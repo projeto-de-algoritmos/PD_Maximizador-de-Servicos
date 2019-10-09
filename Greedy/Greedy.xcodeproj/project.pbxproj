@@ -13,9 +13,11 @@
 		6E4FA56B234E8FD9005B0234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4FA569234E8FD9005B0234 /* Main.storyboard */; };
 		6E4FA56D234E8FDC005B0234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E4FA56C234E8FDC005B0234 /* Assets.xcassets */; };
 		6E4FA570234E8FDC005B0234 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4FA56E234E8FDC005B0234 /* LaunchScreen.storyboard */; };
+		B3DF250574214EA0334016C5 /* Pods_Greedy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA628CA5DF00EF95EBD2A1F9 /* Pods_Greedy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39030FE00DBB29AA5AE24D14 /* Pods-Greedy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greedy.debug.xcconfig"; path = "Target Support Files/Pods-Greedy/Pods-Greedy.debug.xcconfig"; sourceTree = "<group>"; };
 		6E4FA560234E8FD9005B0234 /* Greedy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Greedy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E4FA563234E8FD9005B0234 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E4FA565234E8FD9005B0234 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		6E4FA56C234E8FDC005B0234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E4FA56F234E8FDC005B0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E4FA571234E8FDC005B0234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA628CA5DF00EF95EBD2A1F9 /* Pods_Greedy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Greedy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D375DD6B694F72EEFB262824 /* Pods-Greedy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greedy.release.xcconfig"; path = "Target Support Files/Pods-Greedy/Pods-Greedy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3DF250574214EA0334016C5 /* Pods_Greedy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				6E4FA562234E8FD9005B0234 /* Greedy */,
 				6E4FA561234E8FD9005B0234 /* Products */,
+				EB7A7028303E151BFA87ED99 /* Pods */,
+				AC7A8F9F67F1E7FF7B110A29 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,24 @@
 			path = Greedy;
 			sourceTree = "<group>";
 		};
+		AC7A8F9F67F1E7FF7B110A29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA628CA5DF00EF95EBD2A1F9 /* Pods_Greedy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB7A7028303E151BFA87ED99 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				39030FE00DBB29AA5AE24D14 /* Pods-Greedy.debug.xcconfig */,
+				D375DD6B694F72EEFB262824 /* Pods-Greedy.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E4FA574234E8FDC005B0234 /* Build configuration list for PBXNativeTarget "Greedy" */;
 			buildPhases = (
+				6196CE793CF6DA439C0DC34C /* [CP] Check Pods Manifest.lock */,
 				6E4FA55C234E8FD9005B0234 /* Sources */,
 				6E4FA55D234E8FD9005B0234 /* Frameworks */,
 				6E4FA55E234E8FD9005B0234 /* Resources */,
+				D21650FECD4F57391037A355 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6196CE793CF6DA439C0DC34C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Greedy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D21650FECD4F57391037A355 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Greedy/Pods-Greedy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Greedy/Pods-Greedy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Greedy/Pods-Greedy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E4FA55C234E8FD9005B0234 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		6E4FA575234E8FDC005B0234 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39030FE00DBB29AA5AE24D14 /* Pods-Greedy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +370,7 @@
 		};
 		6E4FA576234E8FDC005B0234 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D375DD6B694F72EEFB262824 /* Pods-Greedy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

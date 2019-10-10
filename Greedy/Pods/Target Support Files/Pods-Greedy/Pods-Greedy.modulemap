@@ -1,6 +1,0 @@
-framework module Pods_Greedy {
-  umbrella header "Pods-Greedy-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		6E4FA56B234E8FD9005B0234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4FA569234E8FD9005B0234 /* Main.storyboard */; };
 		6E4FA56D234E8FDC005B0234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E4FA56C234E8FDC005B0234 /* Assets.xcassets */; };
 		6E4FA570234E8FDC005B0234 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4FA56E234E8FDC005B0234 /* LaunchScreen.storyboard */; };
+		6E9FDD20234E92BE00C3ABF1 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FDD1F234E92BE00C3ABF1 /* DateCollectionViewCell.swift */; };
 		B3DF250574214EA0334016C5 /* Pods_Greedy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA628CA5DF00EF95EBD2A1F9 /* Pods_Greedy.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		6E4FA56C234E8FDC005B0234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E4FA56F234E8FDC005B0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E4FA571234E8FDC005B0234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E9FDD1F234E92BE00C3ABF1 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA628CA5DF00EF95EBD2A1F9 /* Pods_Greedy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Greedy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D375DD6B694F72EEFB262824 /* Pods-Greedy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Greedy.release.xcconfig"; path = "Target Support Files/Pods-Greedy/Pods-Greedy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +72,7 @@
 				6E4FA56C234E8FDC005B0234 /* Assets.xcassets */,
 				6E4FA56E234E8FDC005B0234 /* LaunchScreen.storyboard */,
 				6E4FA571234E8FDC005B0234 /* Info.plist */,
+				6E9FDD1F234E92BE00C3ABF1 /* DateCollectionViewCell.swift */,
 			);
 			path = Greedy;
 			sourceTree = "<group>";
@@ -88,7 +91,6 @@
 				39030FE00DBB29AA5AE24D14 /* Pods-Greedy.debug.xcconfig */,
 				D375DD6B694F72EEFB262824 /* Pods-Greedy.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9FDD20234E92BE00C3ABF1 /* DateCollectionViewCell.swift in Sources */,
 				6E4FA568234E8FD9005B0234 /* ViewController.swift in Sources */,
 				6E4FA564234E8FD9005B0234 /* AppDelegate.swift in Sources */,
 				6E4FA566234E8FD9005B0234 /* SceneDelegate.swift in Sources */,

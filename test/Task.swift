@@ -8,8 +8,13 @@
 
 import Foundation
 
-struct Task {
+struct Task: Equatable {
     let name: String
     let startDate: Date
     let endDate: Date
+    var selected = false
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.name == rhs.name && lhs.startDate == rhs.startDate && lhs.endDate == rhs.endDate
+    }
 }

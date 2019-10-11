@@ -166,7 +166,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tZE-K5-qQh">
-                                <rect key="frame" x="149.5" y="108" width="115" height="32"/>
+                                <rect key="frame" x="20" y="108" width="100" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="qvt-ko-86d"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Single"/>
                                     <segment title="Team"/>
@@ -189,15 +192,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EmployeesNeeded: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wE-YG-52o">
+                                <rect key="frame" x="130" y="113" width="274" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="chG-Dn-aLU" firstAttribute="bottom" secondItem="1Df-SE-6xj" secondAttribute="bottom" id="4Nd-FE-UTj"/>
                             <constraint firstItem="chG-Dn-aLU" firstAttribute="trailing" secondItem="1Df-SE-6xj" secondAttribute="trailing" id="8pD-bh-Uhd"/>
+                            <constraint firstItem="0wE-YG-52o" firstAttribute="leading" secondItem="tZE-K5-qQh" secondAttribute="trailing" constant="10" id="CmP-lZ-oCP"/>
+                            <constraint firstItem="tZE-K5-qQh" firstAttribute="leading" secondItem="chG-Dn-aLU" secondAttribute="leading" constant="20" id="FMb-x3-Df6"/>
                             <constraint firstItem="1Df-SE-6xj" firstAttribute="leading" secondItem="chG-Dn-aLU" secondAttribute="leading" id="QZz-bV-PEY"/>
-                            <constraint firstItem="tZE-K5-qQh" firstAttribute="centerX" secondItem="3Qp-F0-hj3" secondAttribute="centerX" id="TV8-Tw-k89"/>
+                            <constraint firstItem="0wE-YG-52o" firstAttribute="centerY" secondItem="tZE-K5-qQh" secondAttribute="centerY" id="RSo-cQ-NQl"/>
                             <constraint firstItem="1Df-SE-6xj" firstAttribute="top" secondItem="tZE-K5-qQh" secondAttribute="bottom" constant="50" id="VOO-OQ-d5G"/>
                             <constraint firstItem="tZE-K5-qQh" firstAttribute="top" secondItem="chG-Dn-aLU" secondAttribute="top" constant="20" id="Z7L-yV-Xlw"/>
+                            <constraint firstItem="chG-Dn-aLU" firstAttribute="trailing" secondItem="0wE-YG-52o" secondAttribute="trailing" constant="10" id="vIe-6n-5iP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="chG-Dn-aLU"/>
                     </view>
@@ -209,6 +221,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="employeesLabel" destination="0wE-YG-52o" id="qHC-8H-xek"/>
+                        <outlet property="segmentedControl" destination="tZE-K5-qQh" id="PL7-UR-pJD"/>
                         <outlet property="tasksTableView" destination="1Df-SE-6xj" id="ZeK-cO-r1Y"/>
                         <segue destination="e9j-Bb-GLV" kind="presentation" identifier="show" id="dlg-HC-3o0"/>
                     </connections>

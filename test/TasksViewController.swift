@@ -32,6 +32,8 @@ class TasksViewController: UIViewController {
 
             return Calendar.current.component(.year, from: self.currentDate) == dateComponents.year && Calendar.current.component(.month, from: self.currentDate) == dateComponents.month && Calendar.current.component(.day, from: self.currentDate) == dateComponents.day
         })
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControlDidChangeValue(segmentedControl)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +62,65 @@ class TasksViewController: UIViewController {
     }
 
     func intervalPartitioning() {
-        
+        var tasksByEarliestStartTime = tasks.sorted(by: { return $0.startDate < $1.startDate })
+        for index in tasksByEarliestStartTime.indices {
+            tasksByEarliestStartTime[index].selected = true
+        }
+        var workers = [Worker]()
+
+        for task in tasksByEarliestStartTime {
+            if workers.isEmpty {
+                var worker = Worker(name: "Worker \(workers.count)")
+                worker.intervals.append((task.startDate, task.endDate))
+                workers.append(worker)
+            } else {
+                var foundSomeone = false
+                for index in workers.indices {
+                    let w = workers[index]
+                    var aux = true
+                    for (start, end) in w.intervals {
+                        if (task.startDate >= start && task.startDate < end) {
+                            aux = false
+                        }
+                    }
+                    if aux {
+                        workers[index].intervals.append((task.startDate, task.endDate))
+                        foundSomeone = true
+                        continue
+                    } else {
+                        // Do nothing
+                    }
+                }
+                if !foundSomeone {
+                    var worker = Worker(name: "Worker \(workers.count)")
+                    worker.intervals.append((task.startDate, task.endDate))
+                    workers.append(worker)
+                }
+            }
+        }
+
+        for index in tasksByEarliestStartTime.indices {
+            for worker in workers {
+                let task = tasksByEarliestStartTime[index]
+
+                var found = false
+                for (start, end) in worker.intervals {
+                    if start == task.startDate && end == task.endDate {
+                        tasksByEarliestStartTime[index].name = "\(worker.name) - \(task.name)"
+                        found = true
+                        continue
+                    }
+                }
+                if found {
+                    continue
+                }
+
+            }
+        }
+        tasks = tasksByEarliestStartTime
+        employeesLabel.text = "Workers needed: \(workers.count)"
+        DispatchQueue.main.async { self.tasksTableView.reloadData() }
+
     }
 
     func intervalScheduling() {
@@ -96,7 +156,6 @@ class TasksViewController: UIViewController {
             }
         }
 
-        tasks.removeAll()
         tasks = selectedTasks
         DispatchQueue.main.async { self.tasksTableView.reloadData() }
     }
@@ -116,6 +175,7 @@ extension TasksViewController: UITableViewDataSource {
         let task = tasks[indexPath.row]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm"
+        cell.textLabel?.numberOfLines = 5
         cell.textLabel?.text = "Name: \(task.name) - Start: \(dateFormatter.string(from: task.startDate)) - End: \(dateFormatter.string(from: task.endDate))"
         cell.textLabel?.textColor = task.selected ? .green : .red
 

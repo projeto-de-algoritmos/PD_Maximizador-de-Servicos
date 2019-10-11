@@ -9,7 +9,7 @@
 import Foundation
 
 struct Task: Equatable {
-    let name: String
+    var name: String
     let startDate: Date
     let endDate: Date
     var selected = false

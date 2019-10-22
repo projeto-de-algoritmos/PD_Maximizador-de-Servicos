@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TasksViewController: UIViewController {
+class TasksViewController: UIViewController, DismissManager {
 
     var currentDate = Date()
     let cellID = "cell"
@@ -18,22 +18,33 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var employeesLabel: UILabel!
     
+    func vcDismissed() {
+        updateTasks()
+        segmentedControlDidChangeValue(segmentedControl)
+        tasksTableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
 
+        updateTasks()
+        
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControlDidChangeValue(segmentedControl)
+    }
+    
+    func updateTasks() {
         tasks = TasksSingleton.shared.tasks.filter({
             var dateComponents = DateComponents()
             dateComponents.year = Calendar.current.component(.year, from: $0.startDate)
             dateComponents.month = Calendar.current.component(.month, from: $0.startDate)
             dateComponents.day = Calendar.current.component(.day, from: $0.startDate)
-
+            
             return Calendar.current.component(.year, from: self.currentDate) == dateComponents.year && Calendar.current.component(.month, from: self.currentDate) == dateComponents.month && Calendar.current.component(.day, from: self.currentDate) == dateComponents.day
         })
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControlDidChangeValue(segmentedControl)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +59,9 @@ class TasksViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueID, let _viewController = segue.destination as? CreateTaskViewController {
             _viewController.currentDate = currentDate
+            _viewController.dismissManager = self
+        } else {
+            tasksTableView.reloadData()
         }
     }
     

@@ -11,6 +11,7 @@ import UIKit
 class CreateTaskViewController: UIViewController {
 
     var currentDate = Date()
+    var dismissManager: DismissManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class CreateTaskViewController: UIViewController {
         TasksSingleton.shared.tasks.append(task)
         TasksSingleton.shared.tasks.forEach({ print($0) })
 
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
+        self.dismissManager?.vcDismissed()
     }
 }

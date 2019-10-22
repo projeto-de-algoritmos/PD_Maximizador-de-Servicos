@@ -21,6 +21,7 @@
 		6E9FDD2A234EC97F00C3ABF1 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FDD29234EC97F00C3ABF1 /* CreateTaskViewController.swift */; };
 		6E9FDF862350AEC800C3ABF1 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FDF852350AEC800C3ABF1 /* Worker.swift */; };
 		E1227DB766CAE4D98FC486F1 /* Pods_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEE9432C13047E39F5FCC6A /* Pods_test.framework */; };
+		E2B90178235EAFF3004492A5 /* DismissManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B90177235EAFF3004492A5 /* DismissManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		6E9FDF852350AEC800C3ABF1 /* Worker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 		829C947D900C99017F760445 /* Pods-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.release.xcconfig"; path = "Target Support Files/Pods-test/Pods-test.release.xcconfig"; sourceTree = "<group>"; };
 		DCEE9432C13047E39F5FCC6A /* Pods_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B90177235EAFF3004492A5 /* DismissManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				6E9FDD27234EC3F300C3ABF1 /* TasksSingleton.swift */,
 				6E9FDD29234EC97F00C3ABF1 /* CreateTaskViewController.swift */,
 				6E9FDF852350AEC800C3ABF1 /* Worker.swift */,
+				E2B90177235EAFF3004492A5 /* DismissManager.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B90178235EAFF3004492A5 /* DismissManager.swift in Sources */,
 				6E9FDD28234EC3F300C3ABF1 /* TasksSingleton.swift in Sources */,
 				6BE07FB22271A15300B8E301 /* WeekCountCell.swift in Sources */,
 				6B6BB1B2225FAD04006F384C /* ViewController.swift in Sources */,

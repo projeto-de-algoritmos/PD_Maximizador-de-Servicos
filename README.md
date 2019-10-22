@@ -13,12 +13,15 @@
 Descreva os objetivos do seu projeto e como ele funciona. 
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![calendar view](screenshots/calendar.png)
+![single person view](screenshots/single.png)
+![team view](screenshots/team.png)
 
 ## Instalação 
 **Linguagem**: Swift<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Framework**: JTAppleCalendar<br>
+
+**Pré-requisitos**: XCode 10 ou superior.
 
 ## Uso 
 Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.

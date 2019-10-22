@@ -2,12 +2,11 @@ import UIKit
 import JTAppleCalendar
 
 class ViewController: UIViewController {
-
     let segueID = "show"
 
     @IBOutlet var calendarView: JTAppleCalendarView!
     @IBOutlet var weekCount: UICollectionView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarView.scrollDirection = .horizontal
@@ -23,7 +22,7 @@ class ViewController: UIViewController {
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
         if cellState.dateBelongsTo == .thisMonth {
-            cell.dateLabel.textColor = UIColor.white
+            cell.dateLabel.textColor = UIColor.black
         } else {
             cell.dateLabel.textColor = UIColor.gray
         }
@@ -46,7 +45,7 @@ extension ViewController: JTAppleCalendarViewDataSource {
         formatter.dateFormat = "dd MM yyyy"
 
         let startDate = formatter.date(from: "01 01 2019")!
-        let endDate = Date(timeIntervalSinceNow: 10000000)
+        let endDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 365)
         return ConfigurationParameters(startDate: startDate, endDate: endDate)
     }
 }

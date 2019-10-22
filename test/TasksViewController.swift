@@ -120,7 +120,8 @@ class TasksViewController: UIViewController, DismissManager {
                 var found = false
                 for (start, end) in worker.intervals {
                     if start == task.startDate && end == task.endDate {
-                        tasksByEarliestStartTime[index].name = "\(worker.name) - \(task.name)"
+                        
+                        tasksByEarliestStartTime[index].workerName = "\(worker.name) -"
                         found = true
                         continue
                     }
@@ -141,6 +142,7 @@ class TasksViewController: UIViewController, DismissManager {
         var tasksByEarliestFinishTime = tasks.sorted(by: { return $0.endDate < $1.endDate })
         for index in tasksByEarliestFinishTime.indices {
             tasksByEarliestFinishTime[index].selected = false
+            tasksByEarliestFinishTime[index].workerName = ""
         }
         var selectedTasks = [Task]()
         for var task in tasksByEarliestFinishTime {
@@ -190,7 +192,7 @@ extension TasksViewController: UITableViewDataSource {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm"
         cell.textLabel?.numberOfLines = 5
-        cell.textLabel?.text = "Name: \(task.name) - Start: \(dateFormatter.string(from: task.startDate)) - End: \(dateFormatter.string(from: task.endDate))"
+        cell.textLabel?.text = "Name: \(task.workerName) \(task.name) - Start: \(dateFormatter.string(from: task.startDate)) - End: \(dateFormatter.string(from: task.endDate))"
         cell.textLabel?.textColor = task.selected ? .green : .red
 
         return cell

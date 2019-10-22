@@ -14,6 +14,11 @@ class ViewController: UIViewController {
         calendarView.showsHorizontalScrollIndicator = false
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let ds = calendarView.visibleDates()
+        calendarView.viewWillTransition(to: .zero, with: coordinator, anchorDate: ds.monthDates.first?.date)
+    }
+    
     func configureCell(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? DateCell  else { return }
         cell.dateLabel.text = cellState.text

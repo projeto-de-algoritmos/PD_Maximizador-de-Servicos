@@ -10,7 +10,7 @@
 | 15/0016310  |  Luis Gustavo Avelino |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+O objetivo do projeto é servir como um agendador de serviços para profissionais autônomos. Nele o profissional autônomo pode cadastrar os serviços que deve realizar e após isso ele escolhe se quer realizá-las sozinhos, nesse caso o aplicativo escolhe a maior combinação possível de serviços combináveis, ou em equipe, nesse caso o aplicativo diz quantas pessoas o profissional precisaria contratar para realizar todas as atividades.
 
 ## Screenshots
 ![calendar view](screenshots/calendar.png)
@@ -19,15 +19,17 @@ Descreva os objetivos do seu projeto e como ele funciona.
 
 ## Instalação 
 **Linguagem**: Swift<br>
-**Framework**: JTAppleCalendar<br>
+**Framework**: UIKit e JTAppleCalendar<br>
 
 **Pré-requisitos**: XCode 10 ou superior.
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+1. Escolher um dia no calendário
+2. Adicionar tarefas nesse dia
+3. Escolher o método de realização (sozinho ou em equipe)
 
 ## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+Não se aplica.
 
 
 

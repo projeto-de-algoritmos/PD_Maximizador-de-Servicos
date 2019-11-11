@@ -28,9 +28,6 @@ O objetivo do projeto é servir como um agendador de serviços para profissionai
 2. Adicionar tarefas nesse dia
 3. Escolher o método de realização (sozinho ou em equipe)
 
-## Outros 
-Não se aplica.
-
 
 
 

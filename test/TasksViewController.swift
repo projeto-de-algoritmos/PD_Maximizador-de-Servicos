@@ -58,6 +58,7 @@ class TasksViewController: UIViewController, DismissManager {
 
     func weightedIntervalScheduling() -> Double {
         var _tasks = tasks
+        _tasks = _tasks.sorted(by: { $0.endDate < $1.endDate })
         print(tasks.map({ $0.weight }))
 
         // Initialize V
@@ -78,7 +79,7 @@ class TasksViewController: UIViewController, DismissManager {
         }
         print("P: \(p)")
 
-        // Initialize P
+        // Initialize M
         var m: [Double] = [0]
         for i in 1 ... _tasks.count {
             m.append(max(v[i] + m[p[i]], m[i - 1]))

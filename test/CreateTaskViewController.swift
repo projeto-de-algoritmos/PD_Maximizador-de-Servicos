@@ -10,20 +10,27 @@ import UIKit
 
 class CreateTaskViewController: UIViewController {
 
+    // MARK: - Properties
     var currentDate = Date()
     var dismissManager: DismissManager?
 
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        taskNameTxtField.delegate = self
+        taskWeightTxtField.delegate = self
         startDateDatePicker.date = currentDate
         endDateDatePicker.date = currentDate
     }
 
+    // MARK: - Outlets
     @IBOutlet var taskNameTxtField: UITextField!
     @IBOutlet var startDateDatePicker: UIDatePicker!
     @IBOutlet var endDateDatePicker: UIDatePicker!
     @IBOutlet weak var taskWeightTxtField: UITextField!
 
+    // MARK: - Actions
     @IBAction func didTouchCreateTask(_ sender: UIButton) {
 
         let taskName = taskNameTxtField.text?.isEmpty ?? true ? "Empty" : taskNameTxtField.text!
@@ -38,5 +45,13 @@ class CreateTaskViewController: UIViewController {
 
         dismiss(animated: true)
         self.dismissManager?.vcDismissed()
+    }
+}
+
+extension CreateTaskViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

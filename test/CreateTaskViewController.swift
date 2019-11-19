@@ -22,14 +22,16 @@ class CreateTaskViewController: UIViewController {
     @IBOutlet var taskNameTxtField: UITextField!
     @IBOutlet var startDateDatePicker: UIDatePicker!
     @IBOutlet var endDateDatePicker: UIDatePicker!
+    @IBOutlet weak var taskWeightTxtField: UITextField!
 
     @IBAction func didTouchCreateTask(_ sender: UIButton) {
 
-        let taskName = taskNameTxtField.text?.isEmpty ?? true ? "Vazio" : taskNameTxtField.text!
+        let taskName = taskNameTxtField.text?.isEmpty ?? true ? "Empty" : taskNameTxtField.text!
         let startDate = startDateDatePicker.date
         let endDate = endDateDatePicker.date
+        let taskWeight: Double = taskWeightTxtField.text?.isEmpty ?? true ? 20.0 : Double(taskWeightTxtField.text!)!
 
-        let task = Task(name: taskName, startDate: startDate, endDate: endDate)
+        let task = Task(name: taskName, startDate: startDate, endDate: endDate, weight: taskWeight)
 
         TasksSingleton.shared.tasks.append(task)
         TasksSingleton.shared.tasks.forEach({ print($0) })

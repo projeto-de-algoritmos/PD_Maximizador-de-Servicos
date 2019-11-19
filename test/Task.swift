@@ -12,8 +12,8 @@ struct Task: Equatable {
     var name: String
     let startDate: Date
     let endDate: Date
+    let weight: Double
     var selected = false
-    var workerName = ""
 
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.name == rhs.name && lhs.startDate == rhs.startDate && lhs.endDate == rhs.endDate

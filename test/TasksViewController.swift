@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class TasksViewController: UIViewController, DismissManager {
 
@@ -15,12 +16,10 @@ class TasksViewController: UIViewController, DismissManager {
     let segueID = "show"
     var tasks = [Task]()
     @IBOutlet weak var tasksTableView: UITableView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var employeesLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
     
     func vcDismissed() {
         updateTasks()
-        segmentedControlDidChangeValue(segmentedControl)
         tasksTableView.reloadData()
     }
     
@@ -31,9 +30,6 @@ class TasksViewController: UIViewController, DismissManager {
         tasksTableView.dataSource = self
 
         updateTasks()
-        
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControlDidChangeValue(segmentedControl)
     }
     
     func updateTasks() {
@@ -56,6 +52,64 @@ class TasksViewController: UIViewController, DismissManager {
         performSegue(withIdentifier: segueID, sender: nil)
     }
 
+    @IBAction func didTouchBestSolution(_ sender: UIButton) {
+        amountLabel.text = "\(amountLabel.text ?? "Total amount:") \(weightedIntervalScheduling())"
+    }
+
+    func weightedIntervalScheduling() -> Double {
+        var _tasks = tasks
+        print(tasks.map({ $0.weight }))
+
+        // Initialize V
+        var v: [Double] = [0]
+        for i in 1 ... _tasks.count { v.append(_tasks[i - 1].weight) }
+        print("V: \(v)")
+
+        // Initialize P
+        var p: [Int] = [0]
+        for i in 1 ... _tasks.count {
+            let currentTask = _tasks[i - 1]
+            if let task = _tasks.filter({ $0.endDate < currentTask.startDate }).sorted(by: { $0.endDate > $1.endDate }).first,
+                let index = _tasks.firstIndex(of: task) {
+                p.append(index + 1)
+            } else {
+                p.append(0)
+            }
+        }
+        print("P: \(p)")
+
+        // Initialize P
+        var m: [Double] = [0]
+        for i in 1 ... _tasks.count {
+            m.append(max(v[i] + m[p[i]], m[i - 1]))
+        }
+        print("M: \(m)")
+
+        // Get solution
+        var solution: [Int] = []
+        func findSolution(_ j: Int){
+            if j == 0 {
+                return
+            } else if v[j] + m[p[j]] > m[j - 1] {
+                solution.append(j - 1)
+                findSolution(p[j])
+            } else {
+                findSolution(j - 1)
+            }
+        }
+        findSolution(_tasks.count)
+        print(solution)
+
+        // Update UI with new solution
+        for i in 0 ..< _tasks.count {
+            _tasks[i].selected = solution.contains(i) ? true : false
+        }
+        tasks = _tasks
+        DispatchQueue.main.async { self.tasksTableView.reloadData() }
+
+        return m[_tasks.count]
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueID, let _viewController = segue.destination as? CreateTaskViewController {
             _viewController.currentDate = currentDate
@@ -64,119 +118,8 @@ class TasksViewController: UIViewController, DismissManager {
             tasksTableView.reloadData()
         }
     }
-    
-    @IBAction func segmentedControlDidChangeValue(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            intervalScheduling()
-            employeesLabel.isHidden = true
-        } else {
-            intervalPartitioning()
-            employeesLabel.isHidden = false
-        }
-    }
-
-    func intervalPartitioning() {
-        var tasksByEarliestStartTime = tasks.sorted(by: { return $0.startDate < $1.startDate })
-        for index in tasksByEarliestStartTime.indices {
-            tasksByEarliestStartTime[index].selected = true
-        }
-        var workers = [Worker]()
-
-        for task in tasksByEarliestStartTime {
-            if workers.isEmpty {
-                var worker = Worker(name: "Worker \(workers.count)")
-                worker.intervals.append((task.startDate, task.endDate))
-                workers.append(worker)
-            } else {
-                var foundSomeone = false
-                for index in workers.indices {
-                    let w = workers[index]
-                    var aux = true
-                    for (start, end) in w.intervals {
-                        if (task.startDate >= start && task.startDate < end) {
-                            aux = false
-                        }
-                    }
-                    if aux {
-                        workers[index].intervals.append((task.startDate, task.endDate))
-                        foundSomeone = true
-                        continue
-                    } else {
-                        // Do nothing
-                    }
-                }
-                if !foundSomeone {
-                    var worker = Worker(name: "Worker \(workers.count)")
-                    worker.intervals.append((task.startDate, task.endDate))
-                    workers.append(worker)
-                }
-            }
-        }
-
-        for index in tasksByEarliestStartTime.indices {
-            for worker in workers {
-                let task = tasksByEarliestStartTime[index]
-
-                var found = false
-                for (start, end) in worker.intervals {
-                    if start == task.startDate && end == task.endDate {
-                        
-                        tasksByEarliestStartTime[index].workerName = "\(worker.name) -"
-                        found = true
-                        continue
-                    }
-                }
-                if found {
-                    continue
-                }
-
-            }
-        }
-        tasks = tasksByEarliestStartTime
-        employeesLabel.text = "Workers needed: \(workers.count)"
-        DispatchQueue.main.async { self.tasksTableView.reloadData() }
-
-    }
-
-    func intervalScheduling() {
-        var tasksByEarliestFinishTime = tasks.sorted(by: { return $0.endDate < $1.endDate })
-        for index in tasksByEarliestFinishTime.indices {
-            tasksByEarliestFinishTime[index].selected = false
-            tasksByEarliestFinishTime[index].workerName = ""
-        }
-        var selectedTasks = [Task]()
-        for var task in tasksByEarliestFinishTime {
-
-            if selectedTasks.isEmpty {
-                task.selected = true
-                selectedTasks.append(task)
-                continue
-            } else {
-                var aux = true
-                for t in selectedTasks {
-                    guard task != t else { continue }
-                    if (task.startDate >= t.startDate && task.startDate < t.endDate) {
-                        aux = false
-                    }
-                }
-                if aux {
-                    task.selected = true
-                    selectedTasks.append(task)
-                }
-            }
-        }
-
-        for task in tasksByEarliestFinishTime {
-            if !selectedTasks.contains(task) {
-                selectedTasks.append(task)
-            }
-        }
-
-        tasks = selectedTasks
-        DispatchQueue.main.async { self.tasksTableView.reloadData() }
-    }
 }
-
+    
 extension TasksViewController: UITableViewDelegate { }
 extension TasksViewController: UITableViewDataSource {
 
@@ -190,9 +133,9 @@ extension TasksViewController: UITableViewDataSource {
 
         let task = tasks[indexPath.row]
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.dateFormat = "HH:mm"
         cell.textLabel?.numberOfLines = 5
-        cell.textLabel?.text = "Name: \(task.workerName) \(task.name) - Start: \(dateFormatter.string(from: task.startDate)) - End: \(dateFormatter.string(from: task.endDate))"
+        cell.textLabel?.text = "Name: \(task.name) - Start: \(dateFormatter.string(from: task.startDate)) - End: \(dateFormatter.string(from: task.endDate)) - Weight: \(task.weight)"
         cell.textLabel?.textColor = task.selected ? .green : .red
 
         return cell

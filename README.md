@@ -1,7 +1,7 @@
-# Agendador de Serviços
+# Maximizador de Serviços
 
-**Número da Lista**: 3<br>
-**Conteúdo da Disciplina**: Algoritmos Ambiciosos<br>
+**Número da Lista**: 5 <br>
+**Conteúdo da Disciplina**: Programação Dinâmica <br>
 
 ## Alunos
 |Matrícula | Aluno |
@@ -10,12 +10,12 @@
 | 15/0016310  |  Luis Gustavo Avelino |
 
 ## Sobre 
-O objetivo do projeto é servir como um agendador de serviços para profissionais autônomos. Nele o profissional autônomo pode cadastrar os serviços que deve realizar e após isso ele escolhe se quer realizá-las sozinhos, nesse caso o aplicativo escolhe a maior combinação possível de serviços combináveis, ou em equipe, nesse caso o aplicativo diz quantas pessoas o profissional precisaria contratar para realizar todas as atividades.
+O objetivo do projeto é servir como um maximizador de serviços para profissionais autônomos. Nele o profissional autônomo pode cadastrar os serviços que deve realizar, adicionando o valor de cada serviço, e após isso o app calcula o a melhor combinação possível de serviços maximizando o valor.
 
 ## Screenshots
 ![calendar view](screenshots/calendar.png)
-![single person view](screenshots/single.png)
-![team view](screenshots/team.png)
+
+[![Vídeo do funcionamento](https://img.youtube.com/vi/oivAyo-8Txs/0.jpg)](https://www.youtube.com/watch?v=oivAyo-8Txs)
 
 ## Instalação 
 **Linguagem**: Swift<br>
@@ -26,7 +26,7 @@ O objetivo do projeto é servir como um agendador de serviços para profissionai
 ## Uso 
 1. Escolher um dia no calendário
 2. Adicionar tarefas nesse dia
-3. Escolher o método de realização (sozinho ou em equipe)
+3. Clicar no botão de achar melhor solução
 
 
 
